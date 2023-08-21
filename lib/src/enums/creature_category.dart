@@ -1,0 +1,4 @@
+enum CreatureCategory {
+  prey,
+  predator,
+}
