@@ -1,7 +1,7 @@
 abstract class SpecialPoint {
   /// special name for that point
   /// Tasks and Talons for a warzone
-  String eventNSpecialName;
+  String eventSpecialName;
 
-  SpecialPoint({required this.eventNSpecialName});
+  SpecialPoint({required this.eventSpecialName});
 }

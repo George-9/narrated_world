@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:io';
 import 'package:narrated_world/src/discovery/food_discovery_event.dart';
+import 'package:narrated_world/src/friend_point.dart';
 import 'package:narrated_world/src/special_points/special_point.dart';
 import 'package:narrated_world/src/warzone/warzone.dart';
 
@@ -9,10 +10,16 @@ import 'models/area.dart';
 
 import 'models/division.dart';
 
-List vowels = ['a', 'e', 'i', 'o', 'u'];
+List vowels = [
+  'a',
+  'e',
+  'i',
+  'o',
+  'u',
+];
 
 extension on String {
-  bool startsWithAVowel() => vowels.any((vowel) => this.startsWith(vowel));
+  bool get startsWithAVowel => vowels.any((vowel) => this.startsWith(vowel));
 }
 
 class Player {
@@ -60,15 +67,13 @@ class Player {
     });
   }
 
-  /// TODO:(George) implement explore/handle specialpoint
-  /// inside exploreDivision
   Future<void> _exploreDivision(Division division) async {
     for (var specialPoint in await division.specialPoints) {
       exploreSpecialPoint(specialPoint);
     }
   }
 
-  /// work on a special point.
+  /// "work" on a special point.
   /// choose to pick a discovery or fight an ecountered nemesis
   Future<void> exploreSpecialPoint(Map<int, SpecialPoint> specialPoints) async {
     await for (var sp in await Stream.value(await specialPoints.values)) {
@@ -87,7 +92,7 @@ class Player {
 
           case (Warzone warzone):
             String size = warzone.assailant.size;
-            String aux = size.startsWithAVowel() ? 'An' : 'A';
+            String aux = size.startsWithAVowel ? 'An' : 'A';
 
             print(
               '_________________________________'
@@ -102,6 +107,10 @@ class Player {
               '_________________________________'
               '\n',
             );
+            break;
+
+          case (FriendPoint friendPoint):
+            print('Met a ${friendPoint.friend.name}');
             break;
 
           default:

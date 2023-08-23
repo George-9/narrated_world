@@ -6,5 +6,5 @@ class FoodDiscoveryEvent extends SpecialPoint {
   Food food;
 
   FoodDiscoveryEvent({required this.foodFindCoolName, required this.food})
-      : super(eventNSpecialName: foodFindCoolName);
+      : super(eventSpecialName: foodFindCoolName);
 }

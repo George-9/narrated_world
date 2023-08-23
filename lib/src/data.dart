@@ -2,7 +2,9 @@ import 'package:narrated_world/src/animal_weapon.dart';
 import 'package:narrated_world/src/discovery/food.dart';
 import 'package:narrated_world/src/discovery/food_discovery_event.dart';
 import 'package:narrated_world/src/enums/creature_category.dart';
+import 'package:narrated_world/src/friend_point.dart';
 import 'package:narrated_world/src/models/assailant.dart';
+import 'package:narrated_world/src/models/friend.dart';
 
 import 'package:narrated_world/src/warzone/warzone.dart';
 
@@ -102,6 +104,19 @@ class Data {
                 ),
               },
               {
+                3: FriendPoint(
+                  eventSpecialName: 'Chubby Cheeks Chummy',
+                  friend: Friend(
+                      name: 'Mole',
+                      health: 100,
+                      weight: 100,
+                      toothHeight: 10,
+                      mood: 'Harvesty',
+                      weapons: [
+                        Weapon(name: 'teeth', damage: 100),
+                      ],
+                      creatureCategory: CreatureCategory.prey),
+                ),
                 4: FoodDiscoveryEvent(
                   foodFindCoolName: 'cook seal',
                   food: Food(id: 'flt1', name: 'Fish filette', health: 60.1),

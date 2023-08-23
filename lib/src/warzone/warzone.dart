@@ -8,7 +8,7 @@ class Warzone extends SpecialPoint {
   Animal assailant;
 
   Warzone({required this.warZoneSpecialName, required Assailant this.assailant})
-      : super(eventNSpecialName: warZoneSpecialName) {
+      : super(eventSpecialName: warZoneSpecialName) {
     if (assailant is FriendlyAnimal)
       throw Exception("Friend Should Not Attack");
   }
