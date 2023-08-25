@@ -1,10 +1,8 @@
 
-include: package:lints/recommended.yaml
-
 language:
   analyzer:
     todo: ignore
 
 linter:
   rules:
-    - camel_case_types
+     - camel_case_types
