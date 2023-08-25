@@ -13,8 +13,7 @@ class Animal extends WorldObject {
   Weapon? _weapon;
 
   CreatureCategory creatureCategory;
-
-  int health;
+  int health = 100;
 
   /// also have impact on combat points
   double weight, toothHeight;
@@ -31,7 +30,6 @@ class Animal extends WorldObject {
     required this.toothHeight,
     required this.mood,
     required this.creatureCategory,
-    required this.health,
     this.weapons,
   })  : hasDangerousTeeth = toothHeight > 5,
         _weapon = (weapons == null || weapons.isEmpty)

@@ -4,15 +4,26 @@ import 'package:narrated_world/src/models/animal.dart';
 import '../animal_weapon.dart';
 
 class Assailant extends Animal {
-  String name, mood;
-  int health;
+  @override
+  String name;
+
+  @override
+  String mood;
+
+  @override
+  late int health = super.health;
+
+  @override
   double weight;
+
+  @override
   double toothHeight;
+
+  @override
   CreatureCategory creatureCategory;
 
   Assailant({
     required this.name,
-    required this.health,
     required this.weight,
     required this.toothHeight,
     required this.mood,
@@ -23,7 +34,6 @@ class Assailant extends Animal {
           weight: weight,
           toothHeight: toothHeight,
           mood: mood,
-          health: health,
           creatureCategory: creatureCategory,
           weapons: weapons,
         ) {

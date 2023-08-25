@@ -66,7 +66,6 @@ class Data {
                   assailant: Assailant(
                     name: 'Python',
                     mood: 'bitter',
-                    health: 100,
                     toothHeight: 10,
                     creatureCategory: CreatureCategory.predator,
                     weight: 700,
@@ -89,7 +88,6 @@ class Data {
                   warZoneSpecialName: 'warzone  @10& 2 you',
                   assailant: Assailant(
                     name: 'Grizzly',
-                    health: 100,
                     mood: 'high spirited',
                     toothHeight: 10,
                     creatureCategory: CreatureCategory.predator,

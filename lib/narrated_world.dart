@@ -19,5 +19,5 @@ void main() async {
       Player(currentPoint: 1, mood: 'happy', health: 100, discoveries: []);
 
   var areas = GameData.Data.areas;
-  await player.walkArea((await areas)[0], await areas);
+  await player.walkArea((await areas)[0]);
 }

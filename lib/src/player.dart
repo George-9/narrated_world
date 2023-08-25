@@ -13,7 +13,7 @@ import 'models/division.dart';
 List vowels = ['a', 'e', 'i', 'o', 'u'];
 
 extension on String {
-  bool startsWithAVowel() => vowels.any((vowel) => this.startsWith(vowel));
+  bool startsWithAVowel() => vowels.any((vowel) => startsWith(vowel));
 }
 
 class Player {
@@ -30,35 +30,33 @@ class Player {
     required this.discoveries,
   });
 
-  Future<void> walkArea(Area? currentArea, List<Area> areas) async {
-    Duration duration = Duration(milliseconds: 400);
+  Future<void> walkArea(Area? currentArea) async {
+    if (currentArea == null) return;
 
-    Timer.periodic(duration, (Timer? timer) async {
-      if (currentArea == null) {
-        _implyEndOfAreas(timer);
-        return;
-      }
+    print('_________________');
+    print('|');
 
-      print('_________________');
-      print('|');
+    print('\t\n${currentArea.name} |\n');
 
-      print('\t\n${currentArea?.name} |\n');
+    print('|');
+    print('_________________\n');
 
-      print('|');
-      print('_________________\n');
+    Division? current = await currentArea.currentDivision;
 
-      Division? current = await currentArea?.currentDivision;
+    await walkDivision(current);
+    currentArea = await currentArea.nextArea;
 
-      while (current != null) {
-        print('now in ${current.name}'.toUpperCase());
+    await walkArea(currentArea);
+  }
 
-        await _exploreDivision(current);
+  Future<void> walkDivision(Division? current) async {
+    if (current != null) {
+      await _exploreDivision(current);
 
-        current = await current.next;
-      }
-
-      currentArea = await currentArea?.nextArea;
-    });
+      current = await current.next;
+      walkDivision(current);
+    }
+    print('now in ${current?.name}'.toUpperCase());
   }
 
   /// TODO:(George) implement explore/handle specialpoint
@@ -72,7 +70,7 @@ class Player {
   /// work on a special point.
   /// choose to pick a discovery or fight an ecountered nemesis
   Future<void> exploreSpecialPoint(Map<int, SpecialPoint> specialPoints) async {
-    await for (var sp in await Stream.value(await specialPoints.values)) {
+    await for (var sp in Stream.value(specialPoints.values)) {
       for (SpecialPoint specialPoint in sp) {
         switch (specialPoint) {
           case (FoodDiscoveryEvent foodDiscoveryEvent):
@@ -82,7 +80,7 @@ class Player {
               ' y (yes) . press enter to skip',
             );
 
-            var ans = await stdin.readLineSync();
+            var ans = stdin.readLineSync();
             if (ans == 'y') discoveries.add(foodDiscoveryEvent.food);
             break;
 
@@ -96,7 +94,7 @@ class Player {
               '_____'
               'Ecountered a'
               ' ${warzone.assailant.creatureCategory.name}.'
-              ' $aux ${size},'
+              ' $aux $size,'
               ' ${warzone.assailant.mood}'
               ' ${warzone.assailant.name} '
               ' with ${warzone.assailant.weapon?.name}'
@@ -108,33 +106,31 @@ class Player {
             break;
 
           default:
-            print("Unable to work on this special point ${sp}");
+            print("Unable to work on this special point $sp");
             break;
         }
       }
     }
   }
 
-  void _implyEndOfAreas(Timer? timer) {
-    timer?.cancel();
-    print('\ndone walking areas\n');
-    print('player current point: $currentPoint');
+  // void _implyEndOfAreas(Timer? timer) {
+  //   timer?.cancel();
+  //   print('\ndone walking areas\n');
+  //   print('player current point: $currentPoint');
 
-    for (var discovery in discoveries) {
-      print(discovery.name);
-    }
-  }
+  //   for (var discovery in discoveries) {
+  //     print(discovery.name);
+  //   }
+  // }
 }
 
-/**
- * The player faces te assailant until
- * either of the are dead or wins the fight
- */
+/// The player faces te assailant until
+/// either of the are dead or wins the fight
 Future<void> fightAssailantUntilWinOrDie(
     Player player, Assailant assailant) async {
   final Duration duration = const Duration(milliseconds: 200);
 
-  await Timer(duration, () async {
+  Timer(duration, () async {
     if (assailant.health <= 0 || player.health <= 0) {
       var battleResult = player.health > 1 ? "win" : "die";
       print('You $battleResult');
