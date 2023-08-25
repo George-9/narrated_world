@@ -1,8 +1,4 @@
 
-analyzer:
-  errors:
-    todo: ignore
-
 linter:
   rules:
      - camel_case_types
