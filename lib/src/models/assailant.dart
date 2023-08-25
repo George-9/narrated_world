@@ -1,5 +1,5 @@
 import 'package:narrated_world/src/enums/creature_category.dart';
-import 'package:narrated_world/src/models/animal.dart';
+import 'package:narrated_world/src/models/animal_object.dart';
 
 import '../animal_weapon.dart';
 

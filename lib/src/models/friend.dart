@@ -1,6 +1,6 @@
 import 'package:narrated_world/src/animal_weapon.dart';
 import 'package:narrated_world/src/enums/creature_category.dart';
-import 'package:narrated_world/src/models/animal.dart';
+import 'package:narrated_world/src/models/animal_object.dart';
 
 class Friend extends Animal {
   Friend({

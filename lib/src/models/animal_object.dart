@@ -18,7 +18,9 @@ class Animal extends WorldObject {
 
   /// also have impact on combat points
   @override
-  double weight, toothHeight;
+  double weight;
+
+  double toothHeight;
 
   /// also(somehow) determined by
   /// the type[prey]/[neighbour] or [predator]

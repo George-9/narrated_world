@@ -1,6 +1,6 @@
 import 'dart:math';
 
-import 'package:narrated_world/src/models/animal.dart';
+import 'package:narrated_world/src/models/animal_object.dart';
 import 'package:narrated_world/src/player.dart';
 
 class Combat {

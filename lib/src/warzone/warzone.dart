@@ -1,4 +1,4 @@
-import 'package:narrated_world/src/models/animal.dart';
+import 'package:narrated_world/src/models/animal_object.dart';
 import 'package:narrated_world/src/models/assailant.dart';
 import 'package:narrated_world/src/models/friendly_animal.dart';
 import 'package:narrated_world/src/special_points/special_point.dart';
