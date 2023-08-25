@@ -1,7 +1,6 @@
 import 'dart:math';
 
 import 'package:narrated_world/src/animal_weapon.dart';
-import 'package:narrated_world/src/enums/creature_category.dart';
 import 'package:narrated_world/src/world_object/world_object.dart';
 
 class Animal extends WorldObject {
@@ -12,7 +11,6 @@ class Animal extends WorldObject {
   List<Weapon>? weapons;
   Weapon? _weapon;
 
-  CreatureCategory creatureCategory;
   int health = 100;
 
   /// also have impact on combat points
@@ -29,7 +27,6 @@ class Animal extends WorldObject {
     required this.weight,
     required this.toothHeight,
     required this.mood,
-    required this.creatureCategory,
     this.weapons,
   })  : hasDangerousTeeth = toothHeight > 5,
         _weapon = (weapons == null || weapons.isEmpty)

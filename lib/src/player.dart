@@ -1,19 +1,26 @@
 import 'dart:async';
 import 'dart:io';
 import 'package:narrated_world/src/discovery/food_discovery_event.dart';
-import 'package:narrated_world/src/models/assailant.dart';
 import 'package:narrated_world/src/special_points/special_point.dart';
 import 'package:narrated_world/src/warzone/warzone.dart';
 
 import 'discovery/discovery.dart';
+import 'friend_point.dart';
 import 'models/area.dart';
 
+import 'models/assailant.dart';
 import 'models/division.dart';
 
-List vowels = ['a', 'e', 'i', 'o', 'u'];
+List vowels = [
+  'a',
+  'e',
+  'i',
+  'o',
+  'u',
+];
 
 extension on String {
-  bool startsWithAVowel() => vowels.any((vowel) => startsWith(vowel));
+  bool startsWithAVowel() => vowels.any((vowel) => this.startsWith(vowel));
 }
 
 class Player {
@@ -59,15 +66,13 @@ class Player {
     print('now in ${current?.name}'.toUpperCase());
   }
 
-  /// TODO:(George) implement explore/handle specialpoint
-  /// inside exploreDivision
   Future<void> _exploreDivision(Division division) async {
     for (var specialPoint in await division.specialPoints) {
       exploreSpecialPoint(specialPoint);
     }
   }
 
-  /// work on a special point.
+  /// "work" on a special point.
   /// choose to pick a discovery or fight an ecountered nemesis
   Future<void> exploreSpecialPoint(Map<int, SpecialPoint> specialPoints) async {
     await for (var sp in Stream.value(specialPoints.values)) {
@@ -92,8 +97,7 @@ class Player {
               '_________________________________'
               ' ${warzone.warZoneSpecialName.toUpperCase()} \n'
               '_____'
-              'Ecountered a'
-              ' ${warzone.assailant.creatureCategory.name}.'
+              'Ecountered '
               ' $aux $size,'
               ' ${warzone.assailant.mood}'
               ' ${warzone.assailant.name} '
@@ -103,6 +107,10 @@ class Player {
             );
 
             fightAssailantUntilWinOrDie(this, warzone.assailant);
+            break;
+
+          case (FriendPoint friendPoint):
+            print('Met a ${friendPoint.friend.name}');
             break;
 
           default:

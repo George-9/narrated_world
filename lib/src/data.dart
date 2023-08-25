@@ -1,13 +1,13 @@
-import 'package:narrated_world/src/animal_weapon.dart';
-import 'package:narrated_world/src/discovery/food.dart';
-import 'package:narrated_world/src/discovery/food_discovery_event.dart';
-import 'package:narrated_world/src/enums/creature_category.dart';
-import 'package:narrated_world/src/models/assailant.dart';
-
-import 'package:narrated_world/src/warzone/warzone.dart';
-
 import '../src/models/area.dart';
 import './models/division.dart';
+import 'animal_weapon.dart';
+import 'discovery/food.dart';
+import 'discovery/food_discovery_event.dart';
+import 'enums/creature_category.dart';
+import 'friend_point.dart';
+import 'models/assailant.dart';
+import 'models/friend.dart';
+import 'warzone/warzone.dart';
 
 class Data {
   static Future<List<Area>> areas = Future.value(
@@ -67,7 +67,6 @@ class Data {
                     name: 'Python',
                     mood: 'bitter',
                     toothHeight: 10,
-                    creatureCategory: CreatureCategory.predator,
                     weight: 700,
                     weapons: [Weapon(name: 'Fangs', damage: 30)],
                   ),
@@ -90,7 +89,6 @@ class Data {
                     name: 'Grizzly',
                     mood: 'high spirited',
                     toothHeight: 10,
-                    creatureCategory: CreatureCategory.predator,
                     weight: 100,
                     weapons: [
                       Weapon(name: 'claws', damage: 10),
@@ -100,6 +98,19 @@ class Data {
                 ),
               },
               {
+                3: FriendPoint(
+                  eventSpecialName: 'Chubby Cheeks Chummy',
+                  friend: Friend(
+                      name: 'Mole',
+                      health: 100,
+                      weight: 100,
+                      toothHeight: 10,
+                      mood: 'Harvesty',
+                      weapons: [
+                        Weapon(name: 'teeth', damage: 100),
+                      ],
+                      creatureCategory: CreatureCategory.prey),
+                ),
                 4: FoodDiscoveryEvent(
                   foodFindCoolName: 'cook seal',
                   food: Food(id: 'flt1', name: 'Fish filette', health: 60.1),
