@@ -15,15 +15,17 @@ class Area {
   });
 
   Future<Area?> get nextArea async {
-    for (Area area in await data.Data.areas)
+    for (Area area in await data.Data.areas) {
       if (area.id == nextAreaId) return area;
+    }
 
     return null;
   }
 
   Future<Division?> get currentDivision async {
-    for (Division division in await data.Data.divisions)
+    for (Division division in data.Data.divisions) {
       if (division.id == currentDivisionId) return division;
+    }
 
     return null;
   }

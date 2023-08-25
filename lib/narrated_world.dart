@@ -1,4 +1,4 @@
-import 'src/data.dart' as GameData;
+import 'src/data.dart' as game_data;
 import 'src/player.dart';
 
 /// TODO:(George) add daily challenges
@@ -18,6 +18,6 @@ void main() async {
   Player player =
       Player(currentPoint: 1, mood: 'happy', health: 100, discoveries: []);
 
-  var areas = GameData.Data.areas;
+  var areas = game_data.Data.areas;
   await player.walkArea((await areas)[0], await areas);
 }

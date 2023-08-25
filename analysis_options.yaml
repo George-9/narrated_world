@@ -1,7 +1,7 @@
 
-# include: package:lints/recommended.yaml
+include: package:lints/recommended.yaml
 
 linter:
   rules:
-     - camel_case_types
+    #  - camel_case_types
 

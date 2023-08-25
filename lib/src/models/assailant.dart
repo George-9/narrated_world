@@ -27,9 +27,10 @@ class Assailant extends Animal {
           creatureCategory: creatureCategory,
           weapons: weapons,
         ) {
-    if (weapons == null || weapons.isEmpty)
+    if (weapons == null || weapons.isEmpty) {
       throw Exception(
         'Assailant\'s weapons  cannot be empty, they need a weapon to fight',
       );
+    }
   }
 }

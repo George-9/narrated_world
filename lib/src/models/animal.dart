@@ -10,13 +10,14 @@ class Animal extends WorldObject {
 
   /// An animal has more than one "weapon"
   List<Weapon>? weapons;
-  Weapon? _weapon;
+  final Weapon? _weapon;
 
   CreatureCategory creatureCategory;
 
   int health;
 
   /// also have impact on combat points
+  @override
   double weight, toothHeight;
 
   /// also(somehow) determined by

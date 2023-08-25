@@ -21,7 +21,9 @@ String genStructre({
   String? adverb,
   String? noun1,
 }) {
-  if (auxilliary == null || adverb == null || noun1 == null)
+  if (auxilliary == null || adverb == null || noun1 == null) {
     return '$noun $verb';
+  }
+
   return '$auxilliary $noun $verb $adverb $noun1';
 }

@@ -20,6 +20,6 @@ class Combat {
   Combat({required this.player, required this.assailant}) {
     randomIndex = Random.secure().nextInt(weoponDesribers.length);
     battleName =
-        (assailant.weapon?.name ?? '') + '&' + weoponDesribers[randomIndex];
+        '${assailant.weapon?.name ?? ''}&${weoponDesribers[randomIndex]}';
   }
 }

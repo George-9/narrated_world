@@ -35,7 +35,7 @@ class Data {
   /// points(base on "landmarks"(to be added later)) on the run with randomnized
   /// zones with randomnized dicoveries, food, creatures e.t.c
 
-  static Future<List<Division>> get divisions async => await [
+  static List<Division> get divisions => [
         Division(
           id: 'dv1',
           name: 'The Stores',

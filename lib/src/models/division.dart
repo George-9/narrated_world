@@ -21,8 +21,9 @@ class Division {
   });
 
   Future<Division?> get next async {
-    for (var division in await Data.divisions)
+    for (var division in Data.divisions) {
       if (division.id == nextDivId) return division;
+    }
 
     return null;
   }

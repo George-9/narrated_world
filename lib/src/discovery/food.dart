@@ -1,7 +1,10 @@
 import 'discovery.dart';
 
 class Food extends Discovery {
+  @override
   String id;
+
+  @override
   String name;
 
   /// the amount of health the player gains when they

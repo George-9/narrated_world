@@ -1,11 +1,9 @@
 import 'nlg_sstructure_engine.dart' as nlgSEngine;
 
-/** 
- *  [Natural_Language_Generator]
- * generates structures of senteces with the provided nlg [Engine]
- */
+///  [Natural_Language_Generator]
+/// generates structures of senteces with the provided nlg [Engine]
 class NLG {
-  nlgSEngine.NLGSStructure _nlgsStructure;
+  final nlgSEngine.NLGSStructure _nlgsStructure;
   String? noun, verb, pronoun, adverb, sentence;
 
   NLG({
