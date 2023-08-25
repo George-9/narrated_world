@@ -1,7 +1,6 @@
 import 'dart:math';
 
 import 'package:narrated_world/src/animal_weapon.dart';
-import 'package:narrated_world/src/enums/creature_category.dart';
 import 'package:narrated_world/src/world_object/world_object.dart';
 
 class Animal extends WorldObject {
@@ -11,8 +10,6 @@ class Animal extends WorldObject {
   /// An animal has more than one "weapon"
   List<Weapon>? weapons;
   final Weapon? _weapon;
-
-  CreatureCategory creatureCategory;
 
   int health;
 
@@ -33,7 +30,6 @@ class Animal extends WorldObject {
     required this.weight,
     required this.toothHeight,
     required this.mood,
-    required this.creatureCategory,
     required this.health,
     this.weapons,
   })  : hasDangerousTeeth = toothHeight > 5,

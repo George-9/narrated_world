@@ -1,12 +1,10 @@
 import 'package:narrated_world/src/animal_weapon.dart';
-import 'package:narrated_world/src/enums/creature_category.dart';
 import 'package:narrated_world/src/models/animal_object.dart';
 
-/** A neighbour met along the players path, a friendly
- * animal. Might warn aginst an [encountered] [assailant]
- * e.g.
- * "Take care shiny teeth ahead"[Live_Speech] 
- */
+/// A neighbour met along the players path, a friendly
+/// animal. Might warn aginst an [encountered] [assailant]
+/// e.g.
+/// "Take care shiny teeth ahead"[Live_Speech]
 final class FriendlyAnimal extends Animal {
   FriendlyAnimal({
     required String name,
@@ -15,7 +13,6 @@ final class FriendlyAnimal extends Animal {
     required double toothHeight,
     required List<Weapon> weapons,
     required String mood,
-    required CreatureCategory creatureCategory,
   }) : super(
           name: name,
           health: health,
@@ -23,7 +20,6 @@ final class FriendlyAnimal extends Animal {
           toothHeight: toothHeight,
           mood: mood,
           weapons: weapons,
-          creatureCategory: creatureCategory,
         );
 
   void talk() {

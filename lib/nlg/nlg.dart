@@ -1,9 +1,9 @@
-import 'nlg_sstructure_engine.dart' as nlgSEngine;
+import 'nlg_sstructure_engine.dart' as nlg_s_engine;
 
 ///  [Natural_Language_Generator]
 /// generates structures of senteces with the provided nlg [Engine]
 class NLG {
-  final nlgSEngine.NLGSStructure _nlgsStructure;
+  final nlg_s_engine.NLGSStructure _nlgsStructure;
   String? noun, verb, pronoun, adverb, sentence;
 
   NLG({
@@ -12,7 +12,7 @@ class NLG {
     this.verb,
     this.adverb,
     this.sentence,
-  }) : _nlgsStructure = nlgSEngine.NLGSStructure('it', 'jumped');
+  }) : _nlgsStructure = nlg_s_engine.NLGSStructure('it', 'jumped');
 
-  nlgSEngine.NLGSStructure get structure => _nlgsStructure;
+  nlg_s_engine.NLGSStructure get structure => _nlgsStructure;
 }

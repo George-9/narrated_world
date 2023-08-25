@@ -1,5 +1,4 @@
 import 'package:narrated_world/src/animal_weapon.dart';
-import 'package:narrated_world/src/enums/creature_category.dart';
 import 'package:narrated_world/src/models/animal_object.dart';
 
 class Friend extends Animal {
@@ -10,7 +9,6 @@ class Friend extends Animal {
     required double toothHeight,
     required String mood,
     required List<Weapon> weapons,
-    required CreatureCategory creatureCategory,
   }) : super(
           name: name,
           health: health,
@@ -18,6 +16,5 @@ class Friend extends Animal {
           weight: weight,
           toothHeight: toothHeight,
           weapons: weapons,
-          creatureCategory: creatureCategory,
         );
 }

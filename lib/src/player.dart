@@ -12,7 +12,7 @@ import 'models/area.dart';
 
 import 'models/division.dart';
 
-List vowels = [
+List<String> vowels = [
   'a',
   'e',
   'i',
@@ -21,7 +21,7 @@ List vowels = [
 ];
 
 extension on String {
-  bool get startsWithAVowel => vowels.any((vowel) => this.startsWith(vowel));
+  bool get startsWithAVowel => vowels.any((vowel) => startsWith(vowel));
 }
 
 class Player {
@@ -42,7 +42,11 @@ class Player {
     Duration duration = Duration(milliseconds: 400);
 
     Timer.periodic(duration, (Timer? timer) async {
-      if (currentArea == null) {
+      if (health <= 0) {
+        timer?.cancel();
+      }
+
+      if (health <= 0 || currentArea == null) {
         _implyEndOfAreas(timer);
         return;
       }
@@ -78,7 +82,7 @@ class Player {
   /// "work" on a special point.
   /// choose to pick a discovery or fight an ecountered nemesis
   Future<void> exploreSpecialPoint(Map<int, SpecialPoint> specialPoints) async {
-    await for (var sp in await Stream.value(await specialPoints.values)) {
+    await for (var sp in Stream.value(specialPoints.values)) {
       for (SpecialPoint specialPoint in sp) {
         switch (specialPoint) {
           case (FoodDiscoveryEvent foodDiscoveryEvent):
@@ -88,7 +92,7 @@ class Player {
               ' y (yes) . press enter to skip',
             );
 
-            var ans = await stdin.readLineSync();
+            var ans = stdin.readLineSync();
             if (ans == 'y') discoveries.add(foodDiscoveryEvent.food);
             break;
 
@@ -100,9 +104,8 @@ class Player {
               '_________________________________'
               ' ${warzone.warZoneSpecialName.toUpperCase()} \n'
               '_____'
-              'Ecountered a'
-              ' ${warzone.assailant.creatureCategory.name}.'
-              ' $aux ${size},'
+              'Ecountered '
+              ' $aux $size,'
               ' ${warzone.assailant.mood}'
               ' ${warzone.assailant.name} '
               ' with ${warzone.assailant.weapon?.name}'
@@ -118,7 +121,9 @@ class Player {
             break;
 
           default:
-            print("Unable to work on this special point ${sp}");
+            print(
+              "Unable to work on this special point ${sp.first.eventSpecialName}",
+            );
             break;
         }
       }
@@ -136,46 +141,40 @@ class Player {
   }
 }
 
-/**
- * The player faces te assailant until
- * either of the are dead or wins the fight
- */
+/// The player faces te assailant until
+/// either of the are dead or wins the fight
 Future<void> fightAssailantUntilWinOrDie(
     Player player, Assailant assailant) async {
-  final Duration duration = const Duration(milliseconds: 200);
+  if (assailant.health <= 0 || player.health <= 0) {
+    var battleResult = player.health > 1 ? "win" : "die";
+    print('You $battleResult');
+    return;
+  }
 
-  await Timer(duration, () async {
-    if (assailant.health <= 0 || player.health <= 0) {
-      var battleResult = player.health > 1 ? "win" : "die";
-      print('You $battleResult');
-      return;
-    }
+  print("press 1 to attack, 2 to get attacked");
 
-    print("press 1 to attack, 2 to get attacked");
-
-    String option = stdin.readLineSync() ?? '';
-    if (option.isEmpty) {
-      print('choose a valid option: 1 or 2');
-      await fightAssailantUntilWinOrDie(player, assailant);
-    }
-
-    int result = int.parse(option);
-
-    switch (result) {
-      case 1:
-        print("enemy health: ${player.health}");
-        assailant.health -= player.health ~/ 15;
-        break;
-
-      case 2:
-        player.health -= (player.health ~/ 15) + assailant.weapon!.damage;
-        print("You took damage");
-        print("current health: ${player.health}");
-        break;
-
-      default:
-    }
-
+  String option = stdin.readLineSync() ?? '';
+  if (option.isEmpty) {
+    print('choose a valid option: 1 or 2');
     await fightAssailantUntilWinOrDie(player, assailant);
-  });
+  }
+
+  int result = int.parse(option);
+
+  switch (result) {
+    case 1:
+      assailant.health -= 40;
+      print("enemy health: ${assailant.health}");
+      break;
+
+    case 2:
+      player.health -= (player.health ~/ 15) + assailant.weapon!.damage;
+      print("You took damage");
+      print("current health: ${player.health}");
+      break;
+
+    default:
+  }
+
+  await fightAssailantUntilWinOrDie(player, assailant);
 }

@@ -1,4 +1,4 @@
-enum CreatureCategory {
-  prey,
-  predator,
-}
+// enum CreatureCategory {
+//   prey,
+//   predator,
+// }

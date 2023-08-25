@@ -1,9 +1,7 @@
 /// TODO: CREATE A RANDOM GRAMMAR SENTENCE GENERATOR
 
-/**
- * generates random sentences valid in structure in terms
- * of correct Gramar 
- */
+/// generates random sentences valid in structure in terms
+/// of correct Gramar
 class NLGSStructure {
   String noun, verb;
   String structure;
